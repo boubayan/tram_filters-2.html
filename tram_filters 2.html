@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>فلاتر قطاع الترام</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 30px;
+      text-align: right;
+    }
+    .hidden { display: none; }
+    h1 {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, textarea, input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+    }
+    #infoBox {
+      background: #fff;
+      padding: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 15px;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+<div id="passwordScreen">
+  <label for="password">أدخل الرقم السري:</label>
+  <input type="password" id="password" placeholder="*****">
+  <button onclick="checkPassword()">دخول</button>
+</div>
+
+<div id="mainForm" class="hidden">
+  <h1>فلاتر قطاع الترام</h1>
+
+  <label for="filterSelect">اختر الفلتر:</label>
+  <select id="filterSelect" onchange="showInfo()">
+    <option value="">-- اختر الفلتر --</option>
+    <option value="filter1">فلتر 1-2-3</option>
+    <option value="filter2">فلتر 4</option>
+    <option value="filter3">فلتر 5</option>
+    <option value="filter4">فلتر 7</option>
+    <option value="filter5">فلتر 8</option>
+    <option value="filter6">فلتر 9-10</option>
+    <option value="filter7">فلتر 11</option>
+    <option value="filter8">فلتر 12</option>
+    <option value="filter9">فلتر 13</option>
+    <option value="filter10">فلتر 14</option>
+    <option value="filter11">فلتر 15</option>
+  </select>
+
+  <div id="infoBox" class="hidden">
+    <textarea id="infoText" readonly></textarea><br>
+    <a id="mapLink" href="#" target="_blank"><button>فتح الموقع في Google Maps</button></a>
+  </div>
+
+  <div class="footer">
+    إصدار تجريبي - برمجة علي محمد العمري
+  </div>
+</div>
+
+<script>
+  const passwordCorrect = "12345";
+
+  function checkPassword() {
+    const input = document.getElementById("password").value;
+    if (input === passwordCorrect) {
+      document.getElementById("passwordScreen").classList.add("hidden");
+      document.getElementById("mainForm").classList.remove("hidden");
+    } else {
+      alert("الرقم السري غير صحيح");
+    }
+  }
+
+  function showInfo() {
+    const filter = document.getElementById("filterSelect").value;
+    const infoBox = document.getElementById("infoBox");
+    const infoText = document.getElementById("infoText");
+    const mapLink = document.getElementById("mapLink");
+
+    let info = "";
+    let url = "#";
+
+    switch (filter) {
+      case "filter1":
+        info = "الموقع: الحي السكني شارع عبدالله عمران تريم شارع اصفري";
+        url = "https://maps.app.goo.gl/qySt8NPXryUWFK3a9?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter2":
+        info = "الموقع: شارع الملك سلمان بن عبدالعزيز آل سعود، بالقرب من كلية دبي الخاصة";
+        url = "https://maps.app.goo.gl/gXJq96hBmuyQcAYm7?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter3":
+        info = "الموقع: شارع الملك سلمان بن عبدالعزيز آل سعود، سكن الطيارين";
+        url = "#";
+        break;
+      case "filter4":
+        info = "الموقع: شارع الملك سلمان بن عبدالعزيز آل سعود، قرية المعرفة";
+        url = "https://maps.app.goo.gl/wvVPP78EVn1DGnA67?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter5":
+        info = "الموقع: شارع الملك سلمان بن عبدالعزيز آل سعود، مدخل جزيرة النخلة";
+        url = "https://maps.app.goo.gl/1jV4M7XnXBcJs6x26?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter6":
+        info = "الموقع: بالقرب من طريق نخلة جميرا";
+        url = "https://maps.app.goo.gl/yE4qu4V6SmRjxpTV8?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter7":
+        info = "الموقع: شارع النجوم، بالقرب من مدينة دبي للإعلام";
+        url = "https://maps.app.goo.gl/8hRMhqXu318CS11a6?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter8":
+        info = "الموقع: بالقرب من محطة ترام الميناء السياحي، ومجمع كارفور هايبر ماركت";
+        url = "https://maps.app.goo.gl/ocQHrXZ1EMrHFWSC8?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter9":
+        info = "الموقع: بالقرب من برنسس تاور ومقابل مسجد الشيخ راشد";
+        url = "https://maps.app.goo.gl/hMKyXpcuJtUtVNuz9?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter10":
+        info = "الموقع: شارع السايورة، شارع المرسى مقابل شارع الشيخ زايد";
+        url = "https://maps.app.goo.gl/3bmBg7iZLu81EYFc8?g_st=com.google.maps.preview.copy";
+        break;
+      case "filter11":
+        info = "الموقع: شارع المرسى، مقابل دبي مارينا مول و ميلينيوم";
+        url = "https://maps.app.goo.gl/xFnbBiuumyD4rksM8?g_st=com.google.maps.preview.copy";
+        break;
+    }
+
+    if (filter) {
+      infoBox.classList.remove("hidden");
+      infoText.value = info;
+      mapLink.href = url;
+    } else {
+      infoBox.classList.add("hidden");
+    }
+  }
+</script>
+
+</body>
+</html>
